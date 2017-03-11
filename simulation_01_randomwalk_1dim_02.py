@@ -66,11 +66,13 @@ plt.grid(True)
     
 for i in range(0,len(dis)):
     #if(dis[i] != 0):
-        plt.plot(i-X_0, dis[i], 'ro')
+        p1a, = plt.plot(i-X_0, dis[i], 'ro', label='hi')
     
 title = 'RandomWalk with Memory Effect : Gunter Model ( p=' + str(p) +' q=' + str(q) + ' )'
 plt.xlabel('x')
 plt.ylabel('frequency')
 plt.title(title)
+
+plt.legend([p1a], ["Attr A"])    
     
 plt.show()
