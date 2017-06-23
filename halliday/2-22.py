@@ -10,7 +10,7 @@ Chapter2, Problem18
 import numpy as np
 import matplotlib.pyplot as plt
 
-t = np.arange(0.,2.,0.01)
+t = np.arange(0.,1.5,0.01)
 x = 3* t**2 - 2* t**3
 v = 6*t - 6* t**2
 a = 6 - 12*t
