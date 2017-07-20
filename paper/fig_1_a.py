@@ -49,7 +49,7 @@ def randwalk(p):
         
     for i in range(0, t, 100):
         #plt.plot(i, x[i], 'ro')
-        plt.plot(i, av_xx[i] - av_x[i], 'ro')
+        plt.plot(i, av_xx[i] - av_x[i], 'x')
     
      
 plt.axis([10, t, 10, t*1000])

@@ -88,9 +88,9 @@ print("   ")
 print(expect_x2 - expect_x)
 
     
-title = 'RandomWalk with Memory Effect : Kim Model ( p=' + str(p) +' q=' + str(q) + ' )'
-plt.xlabel('x')
-plt.ylabel('frequency')
+title = 'RandomWalk with Memory Effect : Kim Model'
+plt.xlabel('$t$', fontsize=20)
+plt.ylabel('$< {x_t}^2>$', fontsize=20)
 plt.title(title)
     
 plt.show()
