@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-@author: Wool(wool@wool.pe.kr)
+Created on Thu Aug 17 21:34:55 2017
+
+@author: woolseo
 """
 
-from numpy import *
+import numpy as np
 import matplotlib.pyplot as plt
 #import numpy as np
 
-N = 1000
+N = 10
 t_max = 10**5
 p = 0.3
 cnt = 0
@@ -16,49 +18,41 @@ multi = 1
 a = 1
 k=1
 
-store_t = []
-store_xx = []
-store_x = []
-vari = []
+store_t = np.array([])
+store_xx = np.array([])
+store_x = np.array([])
+vari = np.array([])
+
+meanX = np.array([])
+meansquareX = np.array([])
+varX = np.array([])
 
 def randwalk(t):
     
-    n = []
-    
-    for i in range(0, 2*t+1):
-        n.append(0)
+    n = np.zeros(2*t+1)
     
     #N번 시행
     for j in range(1, N):
-        x = 0
-        s = []
+        x = np.array([])
+        squarex = np.array([])
+        s = np.array([])
         
         #t=1
-        r = random.rand()
+        r = np.random.random()
         if( r < 0.5 ):
             s_next = +1
         else:
             s_next = -1
         
-        x = x + s_next
-        s.append(s_next)
+        x = np.insert(x,0,s_next)
+        squarex = np.insert(squarex,0,s_next*s_next) 
+        s = np.insert(s,0,s_next)
         
-        """#t=2
-        if( random.rand() < p ):
-            s_next = s[0]
-        else:
-            r = random.rand()
-            if( r < 0.5 ):
-                s_next = +1
-            else:
-                s_next = -1
-        x = x + s_next
-        s.append(s_next)"""
-        
+      
         #t>1
         for i in range(1, t):
-            if( random.rand() < (1/(t**a)) ):
-                r = random.rand()
+            if( np.random.random() < (1/(t**a)) ):
+                r = np.random.random()
                 if( r < 0.5 ):
                     s_next = +1
                 else:
@@ -67,8 +61,9 @@ def randwalk(t):
             else:
                 s_next = s[i-1]
             
-            x = x + s_next
-            s.append(s_next)
+            x = np.insert(x,i,s_next)
+            squarex = np.insert(squarex,i,s_next*s_next) 
+            s = np.insert(s,i,s_next)
         
         n[x+t] = n[x+t] + 1     
         #print(x)
