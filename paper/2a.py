@@ -6,16 +6,20 @@
 
 from numpy import *
 import matplotlib.pyplot as plt
+import numpy as np
 
 N = 100
-t_max = 3000
+t_max = 10**5
 p = 0.3
 cnt = 0
-multi = 10;
+multi = 1
+a = 1
+k=1
 
 store_t = []
 store_xx = []
 store_x = []
+vari = []
 
 def randwalk(t):
     
@@ -35,10 +39,11 @@ def randwalk(t):
             s_next = +1
         else:
             s_next = -1
+        
         x = x + s_next
         s.append(s_next)
         
-        #t=2
+        """#t=2
         if( random.rand() < p ):
             s_next = s[0]
         else:
@@ -48,19 +53,19 @@ def randwalk(t):
             else:
                 s_next = -1
         x = x + s_next
-        s.append(s_next)
+        s.append(s_next)"""
         
-        #t>=2
-        for i in range(2, t):
-            if( random.rand() < p ):
-                r = random.randint(0,i)
-                s_next = s[r]
-            else:
+        #t>1
+        for i in range(1, t):
+            if( random.rand() < (1/(t**a)) ):
                 r = random.rand()
                 if( r < 0.5 ):
                     s_next = +1
                 else:
                     s_next = -1
+                
+            else:
+                s_next = s[i-1]
             
             x = x + s_next
             s.append(s_next)
@@ -81,17 +86,20 @@ def randwalk(t):
     store_t.append(t)
     store_xx.append(expect_xx)
     store_x.append(expect_x*expect_x)
-
-
-for k in range(10, t_max, multi):
+    #vari.append(np.var(expect_x))
+    
+while k < t_max:
     randwalk(k)
     cnt = cnt + 1
-    if( (k % multi) == 0 ):
-        multi = multi * 10
-    
+    k = k*2 #+ multi
+    #if( k % (multi*10) == 0):
+     #   multi = multi*10   
 
-for l in range(1, cnt):
+print "done"
+
+for l in range(2, cnt):
     plt.plot(store_t[l], store_xx[l]-store_x[l], 'ro')
+    #plt.plot(store_t[l], vari[l], 'ro')
 
 plt.axis([10, t_max, 10, t_max*t_max])
 plt.xscale('log')  
