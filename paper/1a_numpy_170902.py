@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 #import numpy as np
 
 N = 100
-t_max = 10000
+t_max = 100
 p = 0.3
 q = 1-p
 cnt = 0
@@ -62,9 +62,12 @@ def randwalk(t):
         
         
         store_x = np.vstack((store_x,x))
+        print(store_x)
     
     print("done1")
     var = np.var(store_x,1)
+    print(var)
+    
     
     for t in range(0,t_max-10,5):
         #plt.plot(store_t[t], var[t], 'ro')
