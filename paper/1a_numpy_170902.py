@@ -10,8 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 #import numpy as np
 
-N = 100
-t_max = 100
+N = 10
+t_max = 5
 p = 0.3
 q = 1-p
 cnt = 0
@@ -63,6 +63,7 @@ def randwalk(t):
         
         store_x = np.vstack((store_x,x))
         print(store_x)
+        print("s")
     
     print("done1")
     var = np.var(store_x,1)
