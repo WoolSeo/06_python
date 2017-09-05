@@ -20,7 +20,7 @@ a = 1
 k=1
 
 
-store_xx = np.array([])
+store_xx = np.array([],dtype=np.int)
 
 var = np.array([])
 
@@ -28,12 +28,12 @@ var = np.array([])
 
 def randwalk(t):
     
-    store_x = np.zeros(t_max)
-    store_t = np.arange(t_max)
+    store_x = np.zeros(t_max,dtype=np.int)
+    store_t = np.arange(t_max,dtype=np.int)
     #N번 시행
     for j in range(1, N):
-        x = np.array([])
-        s = np.array([])
+        x = np.array([],dtype=np.int)
+        s = np.array([],dtype=np.int)
         
         #t=1
         if( np.random.random() < 0.5 ):
