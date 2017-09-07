@@ -10,9 +10,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 #import numpy as np
 
-N = 100
-t_max =10000
-p = 0.9
+N = 1000
+t_max =100000
+p = 0.8
 q = 1-p
 cnt = 0
 multi = 1
