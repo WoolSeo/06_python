@@ -10,8 +10,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 #import numpy as np
 
+<<<<<<< HEAD
 N = 100
 t_max =1000
+=======
+N = 1000
+t_max =100000
+>>>>>>> origin/master
 p = 0.8
 q = 1-p
 
