@@ -11,22 +11,15 @@ import matplotlib.pyplot as plt
 #import numpy as np
 
 N = 100
-t_max =10000
-p = 0.9
+t_max =1000
+p = 0.8
 q = 1-p
-cnt = 0
-multi = 1
-a = 1
-k=1
-
-
-store_xx = np.array([],dtype=np.int)
 
 var = np.array([])
 
 
 
-def randwalk(t):
+def randwalk():
     
     store_x = np.arange(0,t_max,1,dtype=np.int)
 
@@ -65,8 +58,8 @@ def randwalk(t):
         #print("done1")
     
     
-    #var = np.var(store_x,1)
-    #print(var)
+    var = np.var(store_x,1)
+    print(var)
     
     
     for i in range(1,N):
@@ -84,6 +77,6 @@ def randwalk(t):
     plt.show()
                 
     
-randwalk(k)
+randwalk()
 
 print("done")
