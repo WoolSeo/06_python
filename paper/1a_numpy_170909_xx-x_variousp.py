@@ -10,8 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 #import numpy as np
 
-N = 100
-t_max =10000
+N = 500
+t_max =100000
 
 def randwalk(pp):
     
