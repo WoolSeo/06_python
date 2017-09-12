@@ -11,18 +11,20 @@ import matplotlib.pyplot as plt
 import multiprocessing as proc
 import time
 
-N = 5
+N = 20
 t_max =10
 
 a = 0.05
 
-#var = np.array([])
 store_x = np.arange(0,t_max,1,dtype=np.int)
+
 
 def randwalk(a,q):
     x = np.array([],dtype=np.int)
     s = np.array([],dtype=np.int)
-        
+    
+    np.random.seed();    
+    
     #t=1
     if( np.random.random() < 0.5 ):
         s_next = +1
@@ -50,7 +52,7 @@ def randwalk(a,q):
         x = np.insert(x,i,x[i-1]+s_next)
         s = np.insert(s,i,s_next)
     
-    print(x.shape)
+    print(x)
     q.put(x)
     
     
@@ -63,8 +65,9 @@ Q = proc.Queue() # queue
 p = [] #proceesing array
 
 for i in range(N):
-    p.append( proc.Process(target = randwalk, args=(0,Q)) )
+    p.append( proc.Process(target = randwalk, args=(i,Q)) )
     p[i].start()
+    time.sleep(1)
 
 
 results = np.array([None,2])
@@ -72,10 +75,8 @@ results = np.array([None,2])
 for i in range(N):
     results=Q.get(True)
     store_x = np.vstack((store_x,results))
-    print(results.shape)
     plt.plot(store_x[:,0],store_x[:,1],'o', ms=1)
         
-print(store_x)
 
 plt.axis([0, t_max, -500, 500])
     

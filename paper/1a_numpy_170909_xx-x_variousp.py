@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import time
 
 N = 10
-t_max =1000
+t_max =100
 
 
 def randwalk(pp):
@@ -79,7 +79,7 @@ def randwalk(pp):
                 
 startTime = time.time()
 
-for p in range(2, 11, 2):
+for p in range(3, 11, 3):
     randwalk(p/10.0)
 
 plt.axis([10, t_max, 10, t_max*t_max])

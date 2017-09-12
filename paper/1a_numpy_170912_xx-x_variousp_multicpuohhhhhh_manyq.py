@@ -12,7 +12,7 @@ import multiprocessing as proc #insert this line
 import time
 
 N = 10
-t_max =1000
+t_max =100
 
 def randwalk(pp, q): #insert q
     
@@ -21,7 +21,7 @@ def randwalk(pp, q): #insert q
 
     var = np.array([])
 
-    
+    np.random.seed();
     for k in range(1, t_max, 20):
         #N번 시행
         store_x = np.arange(0,k,1,dtype=np.int)
@@ -64,7 +64,7 @@ def randwalk(pp, q): #insert q
     
     
     #print(var_mean.shape)
-    print("end1")
+    print(var_mean)
     
     q.put(var_mean)
     #print(var_mean[:,0])
@@ -76,7 +76,7 @@ def randwalk(pp, q): #insert q
     
     
     #
-        
+    
 
 
 startTime = time.time()                
