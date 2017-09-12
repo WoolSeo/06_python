@@ -9,9 +9,10 @@ hihi
 import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing as proc #insert this line
+import time
 
-N = 10
-t_max =2000
+N = 100
+t_max =100000
 
 def randwalk(pp, q): #insert q
     
@@ -63,7 +64,7 @@ def randwalk(pp, q): #insert q
     
     
     #print(var_mean.shape)
-    #print("doen")
+    print("end1")
     
     q.put(var_mean)
     #print(var_mean[:,0])
@@ -76,10 +77,13 @@ def randwalk(pp, q): #insert q
     
     #
         
-                
+
+
+startTime = time.time()                
 Q = proc.Queue() # queue
 
 p = []
+
 for i in range(3):
     p.append( proc.Process(target = randwalk, args=((i+1)*0.3, Q)) )
     p[i].start()
@@ -106,5 +110,4 @@ plt.ylabel('$<X^2>-<X>^2$', fontsize=15)
 plt.legend(loc=4)
 plt.show()
 
-
-print("done")
+print(time.time()-startTime)
