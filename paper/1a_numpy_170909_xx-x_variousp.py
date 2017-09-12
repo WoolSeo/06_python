@@ -8,7 +8,7 @@ hihi
 
 import numpy as np
 import matplotlib.pyplot as plt
-#import numpy as np
+import time
 
 N = 10
 t_max =1000
@@ -76,6 +76,7 @@ def randwalk(pp):
  
     
                 
+startTime = time.time()
 
 for p in range(3, 10, 3):
     randwalk(p/10.0)
@@ -89,3 +90,4 @@ plt.legend(loc=4)
 plt.show()
 
 print("done")
+print(time.time()-startTime)

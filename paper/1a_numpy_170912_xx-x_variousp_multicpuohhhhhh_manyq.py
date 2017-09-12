@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 import multiprocessing as proc #insert this line
 import time
 
-N = 100
-t_max =100000
+N = 10
+t_max =1000
 
 def randwalk(pp, q): #insert q
     
