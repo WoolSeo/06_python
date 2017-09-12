@@ -8,14 +8,14 @@ hihi
 
 import numpy as np
 import matplotlib.pyplot as plt
-#import numpy as np
+import multiprocessing as proc #insert this line
 
 N = 10
-t_max =1000
+t_max =2000
 
-def randwalk(pp):
+def randwalk(pp, q): #insert q
     
-    print(pp)
+    #print(pp)
     var_mean = np.array([0,0])
 
     var = np.array([])
@@ -60,25 +60,43 @@ def randwalk(pp):
     
     
         var_mean = np.vstack((var_mean,[k,np.mean(np.var(store_x,1))]))
-        
-    print(var_mean)
-    print("doen")
+    
+    
+    #print(var_mean.shape)
+    #print("doen")
+    
+    q.put(var_mean)
     #print(var_mean[:,0])
     #print(var_mean[:,1])
     
     
     #for i in range(1,N):
     #    plt.plot(store_x[0,:],store_x[i,:],'o')
-    label_temp = "p="+str(pp)
-    plt.plot(var_mean[:,0],var_mean[:,1],'o',label=label_temp)
-        
-        
- 
     
+    
+    #
+        
                 
+Q = proc.Queue() # queue
 
-for p in range(3, 10, 3):
-    randwalk(p/10.0)
+p = []
+for i in range(3):
+    p.append( proc.Process(target = randwalk, args=((i+1)*0.3, Q)) )
+    p[i].start()
+
+
+results = np.array([None,2])
+
+for i in range(3):
+    results=Q.get(True)
+    print(results.shape)
+    plt.plot(results[:,0],results[:,1],'o')
+
+
+
+
+
+#
 
 plt.axis([10, t_max, 10, t_max*t_max])
 plt.xscale('log')  
@@ -87,5 +105,6 @@ plt.xlabel('$t$', fontsize=15)
 plt.ylabel('$<X^2>-<X>^2$', fontsize=15)
 plt.legend(loc=4)
 plt.show()
+
 
 print("done")
