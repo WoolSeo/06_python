@@ -9,9 +9,10 @@ hihi
 import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing as proc #insert this line
+import time
 
-N = 10
-t_max =20
+N = 100
+t_max =200
 
 def randwalk(pp, q): #insert q
     
@@ -20,6 +21,7 @@ def randwalk(pp, q): #insert q
 
     var = np.array([])
 
+    np.random.seed(int(time.time()))
     
     for k in range(1, t_max, 20):
         #N번 시행

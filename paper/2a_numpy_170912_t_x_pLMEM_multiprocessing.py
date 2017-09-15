@@ -21,14 +21,15 @@ a = 0.05
 store_x = np.arange(0,t_max,1,dtype=np.int)
 
 
-def randwalk(a,q):
+def randwalk(b,q):
     x = np.array([],dtype=np.int)
     s = np.array([],dtype=np.int)
-
-        
+    
+    thistime = int(time.time())
+    np.random.seed(thistime);    
     
     #t=1
-    if( np.random.random() < 0.5 ):
+    if( random.random() < 0.5 ):
         s_next = +1
     else:
         s_next = -1
@@ -39,8 +40,8 @@ def randwalk(a,q):
       
     #t>1
     for i in range(1, t_max):
-        if( np.random.random() < ( 1.0 / ( i**a ) ) ):
-            r = np.random.random()
+        if( random.random() < ( 1.0 / ( i**a ) ) ):
+            r = random.random()
             
             if( r < 0.5 ):
                 s_next = +1
@@ -67,7 +68,6 @@ Q = proc.Queue() # queue
 p = [] #proceesing array
 
 for i in range(N):
-    np.random.seed(None);
     p.append( proc.Process(target = randwalk, args=(i,Q)) )
     p[i].start()
     

@@ -10,14 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing as proc #insert this line
 import time
+import random
 
-<<<<<<< HEAD
-N = 200
-t_max =1000000
-=======
 N = 10
 t_max =100
->>>>>>> 49a14e8d8078ffd884dc0e5ef4f0dc7cce8ea0fb
 
 def randwalk(pp, q): #insert q
     
@@ -26,13 +22,10 @@ def randwalk(pp, q): #insert q
 
     var = np.array([])
 
-<<<<<<< HEAD
+    thistime = int(time.time()*1000)
+    random.seed(thistime); 
     
-    for k in range(1, t_max, 100):
-=======
-    np.random.seed();
     for k in range(1, t_max, 20):
->>>>>>> 49a14e8d8078ffd884dc0e5ef4f0dc7cce8ea0fb
         #N번 시행
         store_x = np.arange(0,k,1,dtype=np.int)
         
@@ -41,7 +34,7 @@ def randwalk(pp, q): #insert q
             s = np.array([],dtype=np.int)
             
             #t=1
-            if( np.random.random() < 0.5 ):
+            if( random.random() < 0.5 ):
                 s_next = +1
             else:
                 s_next = -1
@@ -52,10 +45,10 @@ def randwalk(pp, q): #insert q
         
             #t>1
             for i in range(1, k):
-                if( np.random.random() < pp):
-                    s_next = s[np.random.randint(0,i)]
+                if( random.random() < pp):
+                    s_next = s[random.randint(0,i)]
                 else:
-                    r = np.random.random()
+                    r = random.random()
                     if( r < 0.5 ):
                         s_next = +1
                     else:
@@ -94,17 +87,17 @@ Q = proc.Queue() # queue
 
 p = []
 
-for i in range(10):
-    p.append( proc.Process(target = randwalk, args=((i+1)*0.1, Q)) )
+for i in range(3):
+    p.append( proc.Process(target = randwalk, args=((i+1)*0.3, Q)) )
     p[i].start()
 
 
 results = np.array([None,2])
 
-for i in range(10):
+for i in range(3):
     results=Q.get(True)
     print(results.shape)
-    plt.plot(results[:,0],results[:,1],'o',ms=1)
+    plt.plot(results[:,0],results[:,1],'o')
 
 
 

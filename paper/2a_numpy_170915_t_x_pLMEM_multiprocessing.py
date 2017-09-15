@@ -10,19 +10,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing as proc
 import time
-import random
+import datetime
 
-N = 20
-t_max =10
+N = 100
+t_max =1000
 
 a = 0.05
 
 store_x = np.arange(0,t_max,1,dtype=np.int)
 
 
-def randwalk(a,q):
+def randwalk(b,q):
     x = np.array([],dtype=np.int)
     s = np.array([],dtype=np.int)
+    
+    thistime = int(time.time()*10000000)
+    random.seed(thistime);  
     
     #t=1
     if( random.random() < 0.5 ):
@@ -66,15 +69,19 @@ p = [] #proceesing array
 for i in range(N):
     p.append( proc.Process(target = randwalk, args=(i,Q)) )
     p[i].start()
+    
 
 
 results = np.array([None,2])
 
+
 for i in range(N):
     results=Q.get(True)
     store_x = np.vstack((store_x,results))
+    np.savetxt('test.csv', store_x, delimiter=',')
     plt.plot(store_x[:,0],store_x[:,1],'o', ms=1)
-        
+    
+
 
 plt.axis([0, t_max, -500, 500])
     
@@ -85,7 +92,13 @@ plt.ylabel('$x(t)$', fontsize=15)
 
 plt.title("2a nLMEM $x(t)$, $a=$" + str(a)  )
 
+plt.savefig('test.pdf')
 plt.show()
 
+
 print(time.time()-startTime)
+
+now = datetime.datetime.now()
+nowDate = now.strftime('%Y%m%d')
+print(nowDate)
 print("done")
