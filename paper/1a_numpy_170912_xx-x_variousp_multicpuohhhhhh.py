@@ -56,6 +56,7 @@ def randwalk(pp, q): #insert q
             
             store_x = np.vstack((store_x,x))
             print(store_x)
+            print()
             #print("done1")
     
     
