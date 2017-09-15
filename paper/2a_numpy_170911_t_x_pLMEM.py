@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 N = 30
 t_max =100000
 
-a = 0.2
+a = 0.05
 
 #var = np.array([])
 
@@ -64,11 +64,11 @@ def randwalk():
     
     
     for i in range(1,N):
-        plt.plot(store_x[0,:],store_x[i,:],'o')
+        plt.plot(store_x[0,:],store_x[i,:],'o', ms=1)
         
         
     #plt.axis([0, t_max, -t_max, t_max])
-    plt.axis([0, t_max, -1000, 1000])
+    plt.axis([0, t_max, -500, 500])
     
     #plt.xscale('log')  
     #plt.yscale('log')  

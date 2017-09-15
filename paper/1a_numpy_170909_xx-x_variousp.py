@@ -8,10 +8,11 @@ hihi
 
 import numpy as np
 import matplotlib.pyplot as plt
-#import numpy as np
+import time
 
 N = 10
-t_max =1000
+t_max =100
+
 
 def randwalk(pp):
     
@@ -21,7 +22,8 @@ def randwalk(pp):
     var = np.array([])
 
     
-    for k in range(1, t_max, 20):
+
+    for k in range(10, t_max, 20):
         #N번 시행
         store_x = np.arange(0,k,1,dtype=np.int)
         
@@ -73,14 +75,15 @@ def randwalk(pp):
     plt.plot(var_mean[:,0],var_mean[:,1],'o',label=label_temp)
         
         
- 
-    
-                
 
-for p in range(3, 10, 3):
+                
+startTime = time.time()
+
+for p in range(3, 11, 3):
     randwalk(p/10.0)
 
 plt.axis([10, t_max, 10, t_max*t_max])
+
 plt.xscale('log')  
 plt.yscale('log')  
 plt.xlabel('$t$', fontsize=15)
@@ -89,3 +92,4 @@ plt.legend(loc=4)
 plt.show()
 
 print("done")
+print(time.time()-startTime)

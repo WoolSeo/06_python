@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import multiprocessing as proc #insert this line
 
 N = 10
-t_max =10000
+t_max =20
 
 def randwalk(pp, q): #insert q
     
@@ -55,7 +55,8 @@ def randwalk(pp, q): #insert q
             
             
             store_x = np.vstack((store_x,x))
-            #print(store_x)
+            print(store_x)
+            print()
             #print("done1")
     
     
@@ -90,7 +91,6 @@ results = np.array([None,2])
 
 for i in range(3):
     results=Q.get(True)
-    print(results.shape)
     plt.plot(results[:,0],results[:,1],'o')
 
 

@@ -11,8 +11,13 @@ import matplotlib.pyplot as plt
 import multiprocessing as proc #insert this line
 import time
 
+<<<<<<< HEAD
 N = 200
 t_max =1000000
+=======
+N = 10
+t_max =100
+>>>>>>> 49a14e8d8078ffd884dc0e5ef4f0dc7cce8ea0fb
 
 def randwalk(pp, q): #insert q
     
@@ -21,8 +26,13 @@ def randwalk(pp, q): #insert q
 
     var = np.array([])
 
+<<<<<<< HEAD
     
     for k in range(1, t_max, 100):
+=======
+    np.random.seed();
+    for k in range(1, t_max, 20):
+>>>>>>> 49a14e8d8078ffd884dc0e5ef4f0dc7cce8ea0fb
         #N번 시행
         store_x = np.arange(0,k,1,dtype=np.int)
         
@@ -64,7 +74,7 @@ def randwalk(pp, q): #insert q
     
     
     #print(var_mean.shape)
-    print("end1")
+    print(var_mean)
     
     q.put(var_mean)
     #print(var_mean[:,0])
@@ -76,7 +86,7 @@ def randwalk(pp, q): #insert q
     
     
     #
-        
+    
 
 
 startTime = time.time()                
