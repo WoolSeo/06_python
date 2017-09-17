@@ -10,10 +10,20 @@ import numpy as np
 import multiprocessing as proc
 import time
 
-N = 100
+N = 10
 
-def test(b,q):    
-    print(np.random.random())
+
+def test(b,q):
+    x = [0]
+    np.random.seed()
+    for i in range(1,10):
+        if( np.random.random() < 0.5):
+            s = +1
+        else:
+            s = -1
+        x.append(x[i-1]+s)
+        
+    print(x)
     
 
 

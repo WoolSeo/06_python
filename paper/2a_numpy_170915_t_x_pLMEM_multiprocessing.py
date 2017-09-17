@@ -11,9 +11,10 @@ import matplotlib.pyplot as plt
 import multiprocessing as proc
 import time
 import datetime
+import random
 
 N = 100
-t_max =1000
+t_max =100
 
 a = 0.05
 
@@ -24,11 +25,12 @@ def randwalk(b,q):
     x = np.array([],dtype=np.int)
     s = np.array([],dtype=np.int)
     
-    thistime = int(time.time()*10000000)
-    random.seed(thistime);  
+    random.seed();  
     
     #t=1
-    if( random.random() < 0.5 ):
+    o = random.random()
+    print(o)
+    if( o < 0.5 ):
         s_next = +1
     else:
         s_next = -1
@@ -39,8 +41,11 @@ def randwalk(b,q):
       
     #t>1
     for i in range(1, t_max):
-        if( random.random() < ( 1.0 / ( i**a ) ) ):
+        o = random.random()
+        print(o)
+        if( o   < ( 1.0 / ( i**a ) ) ):
             r = random.random()
+            print(r)
             
             if( r < 0.5 ):
                 s_next = +1
@@ -54,9 +59,8 @@ def randwalk(b,q):
         x = np.insert(x,i,x[i-1]+s_next)
         s = np.insert(s,i,s_next)
     
-    print(x)
+    #print(x)
     q.put(x)
-    
     
                 
 ############## start program ###############

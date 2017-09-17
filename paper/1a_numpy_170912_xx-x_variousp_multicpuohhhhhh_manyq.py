@@ -13,7 +13,7 @@ import time
 import random
 
 N = 10
-t_max =100
+t_max =10
 
 def randwalk(pp, q): #insert q
     
@@ -22,8 +22,7 @@ def randwalk(pp, q): #insert q
 
     var = np.array([])
 
-    thistime = int(time.time()*1000)
-    random.seed(thistime); 
+    np.random.seed(); 
     
     for k in range(1, t_max, 20):
         #N번 시행
@@ -34,7 +33,7 @@ def randwalk(pp, q): #insert q
             s = np.array([],dtype=np.int)
             
             #t=1
-            if( random.random() < 0.5 ):
+            if( np.random.random() < 0.5 ):
                 s_next = +1
             else:
                 s_next = -1
@@ -45,8 +44,8 @@ def randwalk(pp, q): #insert q
         
             #t>1
             for i in range(1, k):
-                if( random.random() < pp):
-                    s_next = s[random.randint(0,i)]
+                if( np.random.random() < pp):
+                    s_next = s[np.random.randint(0,i)]
                 else:
                     r = random.random()
                     if( r < 0.5 ):
@@ -59,7 +58,7 @@ def randwalk(pp, q): #insert q
             
             
             store_x = np.vstack((store_x,x))
-            #print(store_x)
+            print(store_x)
             #print("done1")
     
     
@@ -67,7 +66,7 @@ def randwalk(pp, q): #insert q
     
     
     #print(var_mean.shape)
-    print(var_mean)
+    #print(var_mean)
     
     q.put(var_mean)
     #print(var_mean[:,0])
