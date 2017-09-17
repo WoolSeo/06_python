@@ -17,7 +17,7 @@ import multiprocessing as proc
 import time
 import datetime
 
-N = 20
+N = 100
 t_max =100
 filename = 'kim 2014 2a xx'
 
@@ -113,13 +113,13 @@ for i in range(4):
     results = Q.get(True)
     var_mean = np.vstack((var_mean,results))
     np.savetxt(filename_csv, var_mean, delimiter=',')
-    plt.plot(var_mean[:,0],var_mean[:,1],'o', ms=1, label=i)
+    plt.plot(var_mean[:,0],var_mean[:,1],'o', ms=2, label=i)
     #print(i)
     #print(var_mean)
 
 print(time.time()-startTime)
     
-plt.axis([10, t_max, 10, t_max*t_max])
+#plt.axis([10, t_max, 10, t_max*t_max])
 plt.xscale('log')  
 plt.yscale('log')  
 plt.xlabel('$t$', fontsize=15)
