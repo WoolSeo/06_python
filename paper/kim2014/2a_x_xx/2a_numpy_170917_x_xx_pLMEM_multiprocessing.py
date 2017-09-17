@@ -107,6 +107,8 @@ for i in range(4):
 results = np.array([None,2])
 var_mean = np.array([0,0])
 
+
+
 for i in range(4):
     results = Q.get(True)
     var_mean = np.vstack((var_mean,results))
@@ -114,6 +116,8 @@ for i in range(4):
     plt.plot(var_mean[:,0],var_mean[:,1],'o', ms=1, label=i)
     #print(i)
     #print(var_mean)
+
+print(time.time()-startTime)
     
 plt.axis([10, t_max, 10, t_max*t_max])
 plt.xscale('log')  
@@ -127,6 +131,6 @@ plt.legend(loc=4)
 plt.savefig(filename_pdf)
 plt.show()
 
-print(time.time()-startTime)
+
 
 print("done")
