@@ -20,8 +20,8 @@ filename = 'kim 2014 1a xx'
 def randwalk(pp, q): #insert q
     
     #print(pp)
-    var_mean = np.array([0,0])
-
+    
+    global var_mean
     
     
     l = 1
@@ -87,6 +87,8 @@ filename = filename + nowDate
 filename_csv = filename + '.csv'
 filename_pdf = filename + '.pdf'
 
+
+var_mean = np.array([0,0])
          
 Q = proc.Queue() # queue
 

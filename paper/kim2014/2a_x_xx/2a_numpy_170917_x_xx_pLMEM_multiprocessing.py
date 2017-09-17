@@ -17,8 +17,8 @@ import multiprocessing as proc
 import time
 import datetime
 
-N = 100
-t_max =100
+N = 500
+t_max =100000
 filename = 'kim 2014 2a xx'
 
 def randwalk(a,q):

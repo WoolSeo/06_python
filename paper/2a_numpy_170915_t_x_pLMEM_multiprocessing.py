@@ -14,7 +14,7 @@ import datetime
 import random
 
 N = 100
-t_max =100
+t_max =10000
 
 a = 0.05
 
