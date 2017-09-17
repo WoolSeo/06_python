@@ -17,14 +17,13 @@ import multiprocessing as proc
 import time
 import datetime
 
-N = 2
-t_max =20
+N = 20
+t_max =100
 filename = 'kim 2014 2a xx'
 
 def randwalk(a,q):
     
     temp_var_mean = np.array([0,0])
-    temp_store_t = np.array([0])
     
     l = 1
     dl = 1
@@ -33,7 +32,7 @@ def randwalk(a,q):
         
         for k in range(0,9):  
             
-            store_x = np.arange(0,t_max,1,dtype=np.int)
+            store_x = np.arange(0,l,1,dtype=np.int)
             
             for j in range(1, N):
                 
@@ -54,7 +53,7 @@ def randwalk(a,q):
                     
                   
                 #t>1
-                for i in range(1, t_max):
+                for i in range(1, l):
                     if( np.random.random()   < ( 1.0 / ( i**a ) ) ):
                         r = np.random.random()
                         if( r < 0.5 ):
@@ -70,11 +69,11 @@ def randwalk(a,q):
                     s = np.insert(s,i,s_next)
                 
                 
-                #print(x)
+                print(l,k)
                 
                 store_x = np.vstack((store_x,x))
                 
-            temp_var_mean = np.vstack((temp_var_mean,[k,np.mean(np.var(store_x,1))]))
+            temp_var_mean = np.vstack((temp_var_mean,[l,np.mean(np.var(store_x,1))]))
             
             l = l + dl
             
@@ -112,19 +111,18 @@ for i in range(4):
     results = Q.get(True)
     var_mean = np.vstack((var_mean,results))
     np.savetxt(filename_csv, var_mean, delimiter=',')
-    plt.plot(var_mean[0,:],var_mean[i,:],'o', ms=1)
-    print(i)
-    print(var_mean)
+    plt.plot(var_mean[:,0],var_mean[:,1],'o', ms=1, label=i)
+    #print(i)
+    #print(var_mean)
     
 plt.axis([10, t_max, 10, t_max*t_max])
-
 plt.xscale('log')  
 plt.yscale('log')  
 plt.xlabel('$t$', fontsize=15)
 plt.ylabel('$<X^2>-<X>^2$', fontsize=15)
 plt.legend(loc=4)
 
-plt.title("2a pLMEM $<X^2>-<X>^2$" )
+#plt.title("2a pLMEM $<X^2>-<X>^2$" )
 
 plt.savefig(filename_pdf)
 plt.show()
