@@ -10,8 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-N = 1000
-t_max =100000
+N = 50
+t_max =1000
 
 
 def randwalk(pp):
@@ -57,11 +57,11 @@ def randwalk(pp):
             
             
             store_x = np.vstack((store_x,x))
-            print(j)
+            
             #print("done1")
 
     
-    	
+    	#print(k)
         var_mean = np.vstack((var_mean,[k,np.mean(np.var(store_x,1))]))
         
     #print(var_mean)
