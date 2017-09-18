@@ -10,8 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-N = 50
-t_max =1000
+N = 500
+t_max =100000
 
 
 def randwalk(pp):
@@ -23,7 +23,7 @@ def randwalk(pp):
 
     
 
-    for k in range(10, t_max, 50):
+    for k in range(10, t_max, 100):
         #N번 시행
         store_x = np.arange(0,k,1,dtype=np.int)
         
