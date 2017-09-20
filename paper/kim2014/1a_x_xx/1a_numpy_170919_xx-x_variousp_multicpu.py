@@ -12,18 +12,17 @@ import multiprocessing as proc #insert this line
 import time
 import datetime
 
-N = 10
-t_max =100
+N = 1000
+t_max =10000
+step = 10
 
 filename = 'kim 2014 1a xx'
-
-
-var_mean = np.array([0,0])
-store_x = np.arange(0,l,1,dtype=np.int)
 
 def randwalk(pp, l, q): #insert q
     
     global filename
+    
+    var_mean = np.array([2,0])
     
     x = np.array([],dtype=np.int)
     s = np.array([],dtype=np.int)
@@ -57,7 +56,10 @@ def randwalk(pp, l, q): #insert q
     
     np.savetxt(filename + '_x_.csv', x, delimiter=',') 
     
-    var_mean = np.vstack((var_mean,[l,np.mean(np.var(store_x,1))]))
+    var_mean = np.array([pp, l, np.var(x)])
+    #print(var_mean)
+    q.put(var_mean)
+    
     
 
 
@@ -76,38 +78,50 @@ Q = proc.Queue() # queue
 
 p = []
 
+x = 0
+
+results = np.array([3,])
+
+#dtype = [('pp',float),('t',float),('var',float)]
+var_data = np.array([0,0,0], dtype = np.float64)
+
+mean_data = np.array([0,0,0], dtype = np.float64)
+
 for i in range(4):
     
     pp = (i+1)*0.2 
     
-    l = 1
-    dl = 1
+    temp_mean_data = np.array([0,0], dtype = np.float64) 
     
-    while(l < t_max):
+    for t in range(0,t_max,step):
         
-        for j in range(0,9):  
-            #N번 시행
-            
-            
-            for i in range(1, N):
+        temp_var_data = 0
+        
+        for k in range(0, N):
                 
-                p.append( proc.Process(target = randwalk, args=(pp, l, Q)) )
-                p[i].start()
+            p.append( proc.Process(target = randwalk, args=(pp, t,  Q)) )
+            p[x].start()
                 
-            
-            
-        l = l + dl
-            
+            x = x + 1
+                
+            results = Q.get(True)
+            #print(results)
+            var_data = np.vstack((var_data,results))
+            temp_var_data = temp_var_data + results[2]
+        
+        #temp_mean_data = np.array()
+        mean_data = np.vstack((mean_data,[pp,t,temp_var_data/N]))
+        temp_mean_data = np.vstack((temp_mean_data,[t,temp_var_data/N]))
+        print(x)
+        
+    plt.plot(temp_mean_data[:,0],temp_mean_data[:,1],'o',ms=2, label=i)    
+                
+              
+#print(mean_data)  
 
-    dl = dl * 10
+#var_data = np.sort(var_data, order='pp')
 
-
-results = np.array([None,2])
-
-for i in range(4):
-    results=Q.get(True)
-    np.savetxt(filename_csv, results, delimiter=',')
-    plt.plot(results[:,0],results[:,1],ms=2, label=i)
+#print(var_data) 
 
 
 plt.axis([10, t_max, 10, t_max*t_max])

@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 import multiprocessing as proc
 import time
 import datetime
-import random
 
 N = 10
 t_max =10000
@@ -66,19 +65,23 @@ Q = proc.Queue() # queue
 
 p = [] #proceesing array
 
-for i in range(N):
-    p.append( proc.Process(target = randwalk, args=(i,Q)) )
-    p[i].start()
-    
-
 results = np.array([None,2])
 
-
-for i in range(1,N):
+for i in range(2):
+    
+    p.append( proc.Process(target = randwalk, args=(i,Q)) )
+    p[i].start()
     results=Q.get(True)
     store_x = np.vstack((store_x,results))
     np.savetxt('test.csv', store_x, delimiter=',')
     plt.plot(store_x[0,:],store_x[i,:],'o', ms=1)
+    
+
+
+
+
+#for i in range(1,N):
+    
     
 plt.axis([0, t_max, -t_max, t_max])
 #plt.xscale('log')  
