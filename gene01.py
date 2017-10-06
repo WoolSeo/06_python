@@ -7,14 +7,17 @@ Created on Sun Oct  1 23:23:04 2017
 """
 import random
 
+#목표 유전자
 a = 5
 b = 3
 c = 4
 
+#현재 유전자
 x = 0
 y = 0
 z = 0
 
+#세대
 i = 1
 
 while (a != x) or (b != y) or (c != z)  :    
