@@ -23,18 +23,13 @@ for c in DNA:
         RNA = RNA + 'C'
     elif( c == 'C'):
         RNA = RNA + 'G'
-    else:
-        print('Error')
 
 print('RNA : %s' %RNA)
 
-i = 0
-
-while( i<len(RNA) ):
+for i in range(0,len(RNA),3):
     for code in codon:
         if( RNA[i:i+3] == code):
             j = codon.index(code)
     protein = protein + amino[j]
-    i = i + 3
     
 print('protein : %s' %protein)
