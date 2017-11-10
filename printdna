@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Nov  5 16:25:51 2017
+
+@author: woolseo
+"""
+
+yu = ['U', 'C', 'A', 'G']
+data = ''
+
+for a in yu:
+    for b in yu:
+        for c in yu:
+            data = data + '\''+ a + b + c +'\','
+            
+print(data)
