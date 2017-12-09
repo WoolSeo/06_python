@@ -10,9 +10,8 @@ import pdairp
 #따옴표 안에 들어간 긴 문자열은 키값으로 일종의 비밀번호와 같은거에요.
 data = pdairp.PollutionData("nESF1DreNeshOI7Q6zdswaS7wzLtVFLILOfnpEs%2B2QIUSVhqQoZ6udu8Eil%2FNLlWOP4UfsTvE%2B4DJQaZyjekaA%3D%3D")
 
-
-pm10 = data.station("정자동", "DAILY")['0']['pm10Value'] #수원시 정자동
-pm25 = data.station("정자동", "DAILY")['0']['pm25Value'] #수원시 정자동
+pm10 = data.station('인계동', "DAILY")['0']['pm10Value'] #수원시 정자동
+pm25 = data.station('인계동', "DAILY")['0']['pm25Value'] #수원시 정자동
 
 print("pm10 value " + pm10)
 print("pm25 value " + pm25)
